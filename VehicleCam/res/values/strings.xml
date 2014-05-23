@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">VehicleCam</string>
+    <string name="action_settings">Settings</string>
+    <string name="capture">Capture</string>
+    <string name="stop">Stop</string>
+    <string name="twoMinute">2 dakika</string>
+    <string name="fiveMinute">5 dakika</string>
+    <string name="tenMinute">10 dakika</string>
+    <string name="thirtySecond">30 saniye</string>
+    <string name="options">AYARLAR</string>
+    <string name="frontCam">Ön Kamera</string>
+    <string name="backCam">Arka Kamera</string>
+    <string name="selectCam">Kullanılacak kamera</string>
+    <string name="recordDuration">Kayıt süresi</string>
+    <string name="FTPUpload">Buluta yükleme</string>
+</resources>
