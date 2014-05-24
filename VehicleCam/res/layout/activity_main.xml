@@ -29,13 +29,21 @@
 	        android:src="@android:drawable/ic_menu_preferences" />
 
 	    <TextView
+	        android:id="@+id/ftpOptionText"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignBottom="@+id/cameraIdText"
+	        android:layout_marginRight="59dp"
+	        android:layout_toLeftOf="@+id/imageView1"
+	        android:text="TextView" />
+
+	    <TextView
 	        android:id="@+id/recordDurationText"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_alignParentBottom="true"
-	        android:layout_marginBottom="15dp"
-	        android:layout_marginLeft="66dp"
-	        android:layout_toRightOf="@+id/imageButton1"
+	        android:layout_centerHorizontal="true"
+	        android:layout_marginBottom="14dp"
 	        android:text="TextView" />
 
 	    <TextView
@@ -44,8 +52,8 @@
 	        android:layout_height="wrap_content"
 	        android:layout_alignBaseline="@+id/recordDurationText"
 	        android:layout_alignBottom="@+id/recordDurationText"
-	        android:layout_marginLeft="38dp"
-	        android:layout_toRightOf="@+id/recordDurationText"
+	        android:layout_marginLeft="60dp"
+	        android:layout_toRightOf="@+id/imageButton1"
 	        android:text="TextView" />
 
 </RelativeLayout>

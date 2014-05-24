@@ -73,12 +73,13 @@ public class MainActivity extends Activity {
 		Log.d(TAG, "recordDuration = "+recordDuration);
 		timer.schedule(recordingTask, Constants.PREPARE_DURATION, recordDuration);
 		
-		//settext for information
-		((TextView)findViewById(R.id.cameraIdText)).setText(cameraID==0?"Arka\nKam":"Ön\nKam");
-		((TextView)findViewById(R.id.recordDurationText)).setText("Periyot\n("+(recordDuration/1000)+")sn");
-		
 		//getFtpOption
 		ftpOption = SharedPreferencer.getFTPUploadOption(getApplicationContext());
+		
+		//settext for information
+		((TextView)findViewById(R.id.cameraIdText)).setText(cameraID==0?"Ark Kamera":"Ön Kamera");
+		((TextView)findViewById(R.id.recordDurationText)).setText("Periyot ("+(recordDuration/1000)+")sn");
+		((TextView)findViewById(R.id.ftpOptionText)).setText("Bulut "+(ftpOption?"Açýk":"Kapalý"));
 	}
 	
 	public void onClickOptions(View v){

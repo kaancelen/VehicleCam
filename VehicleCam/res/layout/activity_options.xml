@@ -31,11 +31,40 @@
         android:src="@drawable/istlink" />
 
     <RadioGroup
+        android:id="@+id/radioGroup2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/radio0"
+        android:layout_toRightOf="@+id/textView2" >
+    </RadioGroup>
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/imageView1"
+        android:layout_alignParentLeft="true"
+        android:checked="false"
+        android:text="@string/FTPUpload" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/imageButton1"
+        android:layout_marginLeft="57dp"
+        android:layout_marginTop="54dp"
+        android:text="@string/selectCam"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <RadioGroup
         android:id="@+id/radioGroup1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView2" >
+        android:layout_below="@+id/textView2"
+        android:layout_marginLeft="57dp" >
 
         <RadioButton
             android:id="@+id/backCam"
@@ -53,21 +82,12 @@
     </RadioGroup>
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/imageButton1"
-        android:layout_marginTop="52dp"
-        android:text="@string/selectCam"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/radioGroup1"
-        android:layout_toRightOf="@+id/textView2"
+        android:layout_above="@+id/radio0"
+        android:layout_marginLeft="71dp"
+        android:layout_toRightOf="@+id/radioGroup2"
         android:text="@string/recordDuration"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -75,48 +95,36 @@
         android:id="@+id/radio0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView3"
-        android:layout_toRightOf="@+id/textView2"
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_alignTop="@+id/radioGroup1"
         android:onClick="onClickThirtySecond"
         android:text="@string/thirtySecond" />
 
-    <RadioGroup
-        android:id="@+id/radioGroup2"
+    <RadioButton
+        android:id="@+id/radio3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView3"
         android:layout_below="@+id/radio0"
-        android:layout_toRightOf="@+id/textView2" >
+        android:onClick="onClickTenMinute"
+        android:text="@string/tenMinute" />
 
-        <RadioButton
-            android:id="@+id/radio1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onClickTwoMinute"
-            android:text="@string/twoMinute" />
-
-        <RadioButton
-            android:id="@+id/radio2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onClickFiveMinute"
-            android:text="@string/fiveMinute" />
-
-        <RadioButton
-            android:id="@+id/radio3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onClickTenMinute"
-            android:text="@string/tenMinute" />
-    </RadioGroup>
-
-    <Switch
-        android:id="@+id/switch1"
+    <RadioButton
+        android:id="@+id/radio2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/imageView1"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="46dp"
-        android:checked="false"
-        android:text="@string/FTPUpload" />
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_below="@+id/radio3"
+        android:onClick="onClickFiveMinute"
+        android:text="@string/fiveMinute" />
+
+    <RadioButton
+        android:id="@+id/radio1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_below="@+id/radio2"
+        android:onClick="onClickTwoMinute"
+        android:text="@string/twoMinute" />
 
 </RelativeLayout>
