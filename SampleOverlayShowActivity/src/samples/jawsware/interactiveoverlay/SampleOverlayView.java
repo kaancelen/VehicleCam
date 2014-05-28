@@ -49,6 +49,12 @@ public class SampleOverlayView extends OverlayView {
 	public SampleOverlayView(OverlayService service) {
 		super(service, R.layout.overlay, 1);
 		Log.d(TAG, "public SampleOverlayView(OverlayService service)");
+	}
+
+	@Override
+	protected void onAttachedToWindow() {
+		super.onAttachedToWindow();
+		Log.d(TAG, "protected void onAttachedToWindow()");
 		//kamera varmý kontrol et
 		if(!CameraHelper.checkCameraHardware(getContext())){
 			Log.e(TAG ,LogErrors.Messages.NO_CAMERA);
@@ -70,14 +76,6 @@ public class SampleOverlayView extends OverlayView {
 		cameraPreview = new CameraPreview(getContext(), camera);
 		FrameLayout frameLayout = (FrameLayout)findViewById(R.id.camera_preview);
 		frameLayout.addView(cameraPreview);
-		//ftp option al
-		
-	}
-
-	@Override
-	protected void onAttachedToWindow() {
-		super.onAttachedToWindow();
-		Log.d(TAG, "protected void onAttachedToWindow()");
 		//video kaydetmek için kayýt objesini oluþtur
 		videoRecorder = new VideoRecorder(camera);
 		//Timer ayarla
