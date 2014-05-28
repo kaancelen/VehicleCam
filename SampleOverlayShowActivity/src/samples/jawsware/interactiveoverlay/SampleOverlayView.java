@@ -32,6 +32,7 @@ import com.kaancelen.vehiclecam.constants.Constants;
 import com.kaancelen.vehiclecam.errors.LogErrors;
 import com.kaancelen.vehiclecam.errors.ToastMessages;
 import com.kaancelen.vehiclecam.helpers.CameraHelper;
+import com.kaancelen.vehiclecam.helpers.SharedPreferencer;
 
 public class SampleOverlayView extends OverlayView {
 
@@ -41,6 +42,9 @@ public class SampleOverlayView extends OverlayView {
 	private VideoRecorder videoRecorder;
 	private Timer timer;
 	private RecordingTask recordingTask;
+	private boolean ftpOption;
+	private int camOption;
+	private int durationOption;
 	
 	public SampleOverlayView(OverlayService service) {
 		super(service, R.layout.overlay, 1);
@@ -51,8 +55,12 @@ public class SampleOverlayView extends OverlayView {
 			Toast.makeText(getContext(), ToastMessages.NO_CAMERA, Toast.LENGTH_LONG).show();
 			detachAllViewsFromParent();//view'u kapat
 		}
-		//kamera objesini al ve kontrol et
-		camera = CameraHelper.getCameraInstance(Constants.FRONT_CAMERA);
+		//uygulama ayarlarýný al
+		ftpOption = SharedPreferencer.getFTPUploadOption(getContext());
+		camOption = SharedPreferencer.getCameraID(getContext());
+		durationOption = SharedPreferencer.getRecordDuration(getContext());
+		//kamerayý al ve kontrol et
+		camera = CameraHelper.getCameraInstance(camOption);
 		if(camera == null){
 			Log.e(TAG, "Camera instance alýnamýyor!\n");
 			Toast.makeText(getContext(), ToastMessages.CANNOT_OPEN_CAMERA, Toast.LENGTH_SHORT).show();
@@ -62,6 +70,8 @@ public class SampleOverlayView extends OverlayView {
 		cameraPreview = new CameraPreview(getContext(), camera);
 		FrameLayout frameLayout = (FrameLayout)findViewById(R.id.camera_preview);
 		frameLayout.addView(cameraPreview);
+		//ftp option al
+		
 	}
 
 	@Override
@@ -70,20 +80,16 @@ public class SampleOverlayView extends OverlayView {
 		Log.d(TAG, "protected void onAttachedToWindow()");
 		//video kaydetmek için kayýt objesini oluþtur
 		videoRecorder = new VideoRecorder(camera);
-		//timer'ý ayarla
+		//Timer ayarla
 		timer = new Timer();
 		recordingTask = new RecordingTask();
-		timer.schedule(recordingTask, Constants.PREPARE_DURATION, Constants.SECOND_30);
+		timer.schedule(recordingTask, Constants.PREPARE_DURATION, durationOption);
 	}
 
 	@Override
 	protected void onDetachedFromWindow() {
 		super.onDetachedFromWindow();
 		Log.d(TAG, "protected void onDetachedFromWindow()");
-		if(camera != null){//release camera
-			camera.release();
-			camera = null;
-		}
 		if(timer!=null){ //release Timer
 			timer.cancel();
 			timer = null;
@@ -91,6 +97,10 @@ public class SampleOverlayView extends OverlayView {
 		if(videoRecorder != null){ //release video recorder
 			videoRecorder.releaseMediaRecorder();
 			videoRecorder = null;
+		}
+		if(camera != null){//release camera
+			camera.release();
+			camera = null;
 		}
 	}
 	
