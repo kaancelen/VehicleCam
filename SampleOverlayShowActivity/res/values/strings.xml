@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Araç içi kamera</string>
+	<string name="options_app_name">Araç içi kamera ayarlar</string>
+    <string name="title_notification">Araç içi kamera</string>
+    <string name="message_notification">Kapatmak için basın</string>
+    <string name="uploadToCloud">Buluta Yükleme</string>
+    <string name="camToUsed" >Kullanılacak Kamera</string>
+    <string name="FrontCam">Ön Kamera</string>
+    <string name="BackCam">Arka Kamera</string>
+    <string name="durationToUsed">Kayıt Periyodu</string>
+    <string name="second30">30 Saniye</string>
+    <string name="minute2">2 Dakika</string>
+    <string name="minute5">5 Dakika</string>
+    <string name="minute10">10 Dakika</string>
+                       
+</resources>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <Switch
+        android:id="@+id/ftpOption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="44dp"
+        android:text="@string/uploadToCloud" />
+
+    <RadioGroup
+        android:id="@+id/camOption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/ftpOption"
+        android:layout_marginLeft="38dp"
+        android:layout_marginTop="63dp" >
+
+        <RadioButton
+            android:id="@+id/frontCam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/FrontCam" />
+
+        <RadioButton
+            android:id="@+id/backCam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/BackCam" />
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/camOption"
+        android:layout_below="@+id/ftpOption"
+        android:layout_marginTop="39dp"
+        android:text="@string/camToUsed"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <RadioGroup
+        android:id="@+id/durationOption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/ftpOption"
+        android:layout_below="@+id/camOption"
+        android:layout_marginTop="68dp" >
+
+        <RadioButton
+            android:id="@+id/second30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/second30" />
+
+        <RadioButton
+            android:id="@+id/minute2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/minute2" />
+
+        <RadioButton
+            android:id="@+id/minute5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/minute5" />
+        
+        <RadioButton
+            android:id="@+id/minute10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/minute10" />
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/durationOption"
+        android:layout_below="@+id/camOption"
+        android:layout_marginTop="45dp"
+        android:text="@string/durationToUsed"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+</RelativeLayout>
