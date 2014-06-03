@@ -12,9 +12,7 @@ import android.util.Log;
 
 public class FTPUpload extends AsyncTask<String, Void, Void>{
 
-	private static final String SERVER_NAME = FTPConstants.DEFAULT_FTP_URL;
-	private static final String USER_NAME = FTPConstants.DEFAULT_FTP_USERNAME;
-	private static final String PASSWORD = FTPConstants.DEFAULT_FTP_PASSWORD;
+	private FTPAccount ftpAccount;
 	
 	/**
 	 * Should give 2 params
@@ -22,7 +20,7 @@ public class FTPUpload extends AsyncTask<String, Void, Void>{
 	 * params[1] => file path wants to be saved 
 	 */
 	public FTPUpload() {
-		//no implementation need
+		ftpAccount = new FTPAccount(FTPConstants.DEFAULT_FTP_URL, FTPConstants.DEFAULT_FTP_USERNAME, FTPConstants.DEFAULT_FTP_PASSWORD);
 	}
 	
 	@Override
@@ -34,8 +32,8 @@ public class FTPUpload extends AsyncTask<String, Void, Void>{
 				throw new IOException("params.length should be 5");
 			
 			ftpclient = new FTPClient();
-			ftpclient.connect(InetAddress.getByName(SERVER_NAME));//connect
-			if(!ftpclient.login(USER_NAME, PASSWORD))//login
+			ftpclient.connect(InetAddress.getByName(ftpAccount.getUrl()));//connect
+			if(!ftpclient.login(ftpAccount.getUsername(), ftpAccount.getPassword()))//login
 				throw new IOException("Cannot Login");
 			
 			ftpclient.enterLocalPassiveMode();//for 0 bytes issues

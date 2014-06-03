@@ -6,14 +6,19 @@ Copyright 2011 jawsware international
 
 import java.util.Timer;
 import java.util.TimerTask;
+
+import android.content.Intent;
 import android.hardware.Camera;
 import android.os.AsyncTask;
 import android.os.SystemClock;
 import android.util.Log;
+import android.view.Surface;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 import com.jawsware.core.share.OverlayService;
 import com.jawsware.core.share.OverlayView;
+import com.kaancelen.vehiclecam.app.MainActivity;
+import com.kaancelen.vehiclecam.app.MinimizeToMainActivity;
 import com.kaancelen.vehiclecam.camera.CameraPreview;
 import com.kaancelen.vehiclecam.camera.VideoRecorder;
 import com.kaancelen.vehiclecam.constants.Constants;
@@ -26,6 +31,7 @@ import com.kaancelen.vehiclecam.helpers.SharedPreferencer;
 public class SampleOverlayView extends OverlayView {
 
 	private static final String TAG = "SampleOverlayView";
+	private OverlayService service;
 	private Camera camera;
 	private CameraPreview cameraPreview;
 	private VideoRecorder videoRecorder;
@@ -38,6 +44,7 @@ public class SampleOverlayView extends OverlayView {
 	
 	public SampleOverlayView(OverlayService service) {
 		super(service, R.layout.overlay, 1);
+		this.service = service;
 		Log.d(TAG, "public SampleOverlayView(OverlayService service)");
 	}
 
@@ -93,6 +100,16 @@ public class SampleOverlayView extends OverlayView {
 			camera.release();
 			camera = null;
 		}
+	}
+	
+	@Override
+	public boolean onTouchEvent_LongPress() {
+		Log.d(TAG, "public boolean onTouchEvent_LongPress()");
+		//Main activity'yi oluþtur ve baþlat
+		Intent intent = new Intent(service.getBaseContext(), MinimizeToMainActivity.class);
+		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		service.getApplication().startActivity(intent);
+		return true;
 	}
 	
 	/**

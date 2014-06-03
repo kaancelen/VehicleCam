@@ -126,4 +126,82 @@
         android:textStyle="bold"
         android:typeface="serif" />
 
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView1"
+        android:layout_alignBottom="@+id/textView1"
+        android:layout_alignLeft="@+id/ftpOption"
+        android:text="FTP_URL " />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/camOption"
+        android:layout_marginTop="10dp"
+        android:text="Kullanıcı Adı" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/camOption"
+        android:layout_alignParentLeft="true"
+        android:text="Şifre" />
+
+    <EditText
+        android:id="@+id/ftpUrl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView5"
+        android:layout_alignRight="@+id/ftpOption"
+        android:layout_below="@+id/ftpOption"
+        android:layout_toRightOf="@+id/textView5"
+        android:ems="10" >
+    </EditText>
+
+    <EditText
+        android:id="@+id/ftpUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView5"
+        android:layout_alignLeft="@+id/ftpUrl"
+        android:layout_alignRight="@+id/ftpUrl"
+        android:layout_alignTop="@+id/camOption"
+        android:ems="10" />
+
+    <EditText
+        android:id="@+id/ftpPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/camOption"
+        android:layout_alignLeft="@+id/ftpUsername"
+        android:layout_alignRight="@+id/ftpUsername"
+        android:inputType="textPassword"
+        android:ems="10" >
+    </EditText>
+
+    <Button
+        android:id="@+id/ftpDefault"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/durationOption"
+        android:layout_alignLeft="@+id/textView4"
+        android:onClick="onClickDefault"
+        android:text="Sıfırla" />
+
+    <Button
+        android:id="@+id/ftpOK"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/ftpDefault"
+        android:layout_alignLeft="@+id/ftpPassword"
+        android:onClick="onClickFtpOK"
+        android:text="Onayla" />
+
 </RelativeLayout>

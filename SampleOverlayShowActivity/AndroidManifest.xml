@@ -49,6 +49,9 @@
             android:name="SampleOverlayHideActivity"
             android:theme="@android:style/Theme.Dialog" >
         </activity>
+        <activity 
+            android:name="com.kaancelen.vehiclecam.app.MinimizeToMainActivity">
+        </activity>
         
        	<service android:name="SampleOverlayService" />
          

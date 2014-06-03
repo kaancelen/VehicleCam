@@ -1,6 +1,8 @@
 package com.kaancelen.vehiclecam.helpers;
 
 import com.kaancelen.vehiclecam.constants.Constants;
+import com.kaancelen.vehiclecam.ftpupload.FTPAccount;
+import com.kaancelen.vehiclecam.ftpupload.FTPConstants;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -11,6 +13,7 @@ public class SharedPreferencer {
 	private static final String CAMERA_ID_KEY = "qwer4321";
 	private static final String RECORD_DURATION_KEY = "posks456";
 	private static final String FTP_OPTION_KEY = "sada342d";
+	private static final String FTP_ACCOUNT_KEY = "sd340n11";
 	private static final String PREF_KEY = "74jdhsdb39";
 
 	public static boolean setCameraID(int cameraID, Context context){
@@ -47,5 +50,19 @@ public class SharedPreferencer {
 	public static boolean getFTPUploadOption(Context context){
 		SharedPreferences prefs = context.getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE);
 		return prefs.getBoolean(FTP_OPTION_KEY, false);// No FTP Upload default
+	}
+	
+	public static boolean setFTPAccount(FTPAccount ftpAccount, Context context){
+		SharedPreferences prefs = context.getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE);
+		Editor editor = prefs.edit();
+		editor.putString(FTP_ACCOUNT_KEY, ftpAccount.toString());
+		return editor.commit();
+	}
+	
+	public static FTPAccount getFTPAccount(Context context){
+		FTPAccount defaultAccount = new FTPAccount(FTPConstants.DEFAULT_FTP_URL, FTPConstants.DEFAULT_FTP_USERNAME, FTPConstants.DEFAULT_FTP_PASSWORD);
+		SharedPreferences prefs = context.getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE);
+		String string = prefs.getString(FTP_ACCOUNT_KEY, defaultAccount.toString());
+		return FTPAccount.fromString(string);
 	}
 }
