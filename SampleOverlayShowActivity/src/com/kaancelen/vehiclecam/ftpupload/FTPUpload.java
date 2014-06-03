@@ -12,9 +12,9 @@ import android.util.Log;
 
 public class FTPUpload extends AsyncTask<String, Void, Void>{
 
-	private static final String SERVER_NAME = "****";
-	private static final String USER_NAME = "****";
-	private static final String PASSWORD = "****";
+	private static final String SERVER_NAME = FTPConstants.DEFAULT_FTP_URL;
+	private static final String USER_NAME = FTPConstants.DEFAULT_FTP_USERNAME;
+	private static final String PASSWORD = FTPConstants.DEFAULT_FTP_PASSWORD;
 	
 	/**
 	 * Should give 2 params

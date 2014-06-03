@@ -6,7 +6,7 @@
     <string name="title_notification">Araç içi kamera</string>
     <string name="message_notification">Kapatmak için basın</string>
     <string name="uploadToCloud">Buluta Yükleme</string>
-    <string name="camToUsed" >Kullanılacak Kamera</string>
+    <string name="camToUsed" >Kamera</string>
     <string name="FrontCam">Ön Kamera</string>
     <string name="BackCam">Arka Kamera</string>
     <string name="durationToUsed">Kayıt Periyodu</string>

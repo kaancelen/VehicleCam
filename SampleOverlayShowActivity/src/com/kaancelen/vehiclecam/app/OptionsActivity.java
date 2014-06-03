@@ -1,14 +1,14 @@
-package com.kaancelen.vehiclecam.options;
+package com.kaancelen.vehiclecam.app;
 
 import com.kaancelen.vehiclecam.constants.Constants;
 import com.kaancelen.vehiclecam.helpers.SharedPreferencer;
 import samples.jawsware.interactiveoverlay.R;
-import samples.jawsware.interactiveoverlay.SampleOverlayService;
+import samples.jawsware.interactiveoverlay.SampleOverlayShowActivity;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.RadioGroup;
@@ -23,15 +23,12 @@ public class OptionsActivity extends Activity{
 	private boolean ftp;
 	private int cam;
 	private int duration;
-	private OptionsActivity instance;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Log.d(TAG, "protected void onCreate(Bundle savedInstanceState)");
-		setContentView(R.layout.options);
-		//instance
-		instance = this;
+		setContentView(R.layout.activity_options);
 		//view objelerini al
 		ftpOption = (Switch)findViewById(R.id.ftpOption);
 		camOption = (RadioGroup)findViewById(R.id.camOption);
@@ -74,27 +71,19 @@ public class OptionsActivity extends Activity{
 		camOption.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(RadioGroup group, int checkedId) {
-				boolean isSomethingChanged = false;
 				switch (checkedId) {
 				case R.id.frontCam:
 					if(cam != Constants.FRONT_CAMERA){
 						cam = Constants.FRONT_CAMERA;
 						SharedPreferencer.setCameraID(Constants.FRONT_CAMERA, getApplicationContext());
-						isSomethingChanged = true;
 					}
 					break;
 				case R.id.backCam:
 					if(cam != Constants.BACK_CAMERA){
 						cam = Constants.BACK_CAMERA;
 						SharedPreferencer.setCameraID(Constants.BACK_CAMERA, getApplicationContext());
-						isSomethingChanged = true;
 					}
 					break;
-				}
-				//eðer ayarlar deðiþtiyse kapat aç,yeni ayarlar ile kaydetmeye baþlasýn
-				if(isSomethingChanged){
-					SampleOverlayService.stop();
-					startService(new Intent(instance, SampleOverlayService.class));
 				}
 			}
 		});
@@ -102,44 +91,53 @@ public class OptionsActivity extends Activity{
 		durationOption.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(RadioGroup group, int checkedId) {
-				boolean isSomethingChanged = false;
 				switch (checkedId) {
 				case R.id.second30:
 					if(duration != Constants.SECOND_30){
 						duration = Constants.SECOND_30;
 						SharedPreferencer.setRecordDuration(Constants.SECOND_30, getApplicationContext());
-						isSomethingChanged = true;
 					}
 					break;
 				case R.id.minute2:
 					if(duration != Constants.MINUTE_2){
 						duration = Constants.MINUTE_2;
 						SharedPreferencer.setRecordDuration(Constants.MINUTE_2, getApplicationContext());
-						isSomethingChanged = true;
 					}
 					break;
 				case R.id.minute5:
 					if(duration != Constants.MINUTE_5){
 						duration = Constants.MINUTE_5;
 						SharedPreferencer.setRecordDuration(Constants.MINUTE_5, getApplicationContext());
-						isSomethingChanged = true;
 					}
 					break;
 				case R.id.minute10:
 					if(duration != Constants.MINUTE_10){
 						duration = Constants.MINUTE_10;
 						SharedPreferencer.setRecordDuration(Constants.MINUTE_10, getApplicationContext());
-						isSomethingChanged = true;
 					}
 					break;
 				}
-				//eðer ayarlar deðiþtiyse kapat aç,yeni ayarlar ile kaydetmeye baþlasýn
-				if(isSomethingChanged){
-					SampleOverlayService.stop();
-					startService(new Intent(instance, SampleOverlayService.class));
-				}
 			}
 		});
+	}
+	
+	/**
+	 * Ayarlar ekranýnda geri dön butonuna basýnca çaðýrýlýr ve MainActivity'ye gidilir.
+	 * @param v
+	 */
+	public void onClickMain(View v){
+		Log.d(TAG, "onClickMain");
+		startActivity(new Intent(this, MainActivity.class));
+		finish();
+	}
+	/**
+	 * Ayarlar ekranýnda minimize butonuna basýnca çaðýrýlýr ve SampleOverlayShowActivity çaðýrýlýr
+	 * @param v
+	 */
+	public void onClickMinimize(View v){
+		Log.d(TAG, "onClickMinimize");
+		startActivity(new Intent(this, SampleOverlayShowActivity.class));
+		finish();
 	}
 
 }

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:baselineAligned="false"
+    android:orientation="vertical" >
+
+    <FrameLayout
+        android:id="@+id/back_camera_preview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/imageButton1" />
+
+	    <ImageView
+	        android:id="@+id/imageView1"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentBottom="true"
+	        android:layout_alignParentRight="true"
+	        android:src="@drawable/ic_launcher" />
+
+	    <ImageButton
+	        android:id="@+id/imageButton1"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentBottom="true"
+	        android:layout_alignParentLeft="true"
+	        android:onClick="onClickOptions"
+	        android:src="@android:drawable/ic_menu_preferences" />
+
+	    <TextView
+	        android:id="@+id/recordDurationText"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentBottom="true"
+	        android:layout_marginBottom="11dp"
+	        android:layout_marginLeft="73dp"
+	        android:layout_toRightOf="@+id/cameraIdText"
+	        android:text="TextView" />
+
+	    <ImageView
+	        android:id="@+id/imageView2"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_below="@+id/back_camera_preview"
+	        android:layout_marginRight="26dp"
+	        android:layout_toLeftOf="@+id/imageView1"
+	        android:onClick="onClickMinimize"
+	        android:src="@drawable/minimize" />
+
+	    <TextView
+	        android:id="@+id/cameraIdText"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignBaseline="@+id/recordDurationText"
+	        android:layout_alignBottom="@+id/recordDurationText"
+	        android:layout_marginLeft="28dp"
+	        android:layout_toRightOf="@+id/imageButton1"
+	        android:text="TextView" />
+
+	    <TextView
+	        android:id="@+id/ftpOptionText"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignBaseline="@+id/recordDurationText"
+	        android:layout_alignBottom="@+id/recordDurationText"
+	        android:layout_marginLeft="65dp"
+	        android:layout_toRightOf="@+id/recordDurationText"
+	        android:text="TextView" />
+
+</RelativeLayout>

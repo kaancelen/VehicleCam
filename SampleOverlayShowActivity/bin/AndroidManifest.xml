@@ -18,22 +18,31 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name" >
         <activity
-            android:icon="@drawable/ic_launcher"
+            android:name="com.kaancelen.vehiclecam.app.MainActivity"
             android:label="@string/app_name"
-            android:name="SampleOverlayShowActivity"
-            android:theme="@android:style/Theme.Dialog" >
-            <intent-filter >
+            android:screenOrientation="landscape" 
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity 
-            android:icon="@android:drawable/ic_menu_preferences"
-            android:label="@string/options_app_name"
-            android:name="com.kaancelen.vehiclecam.options.OptionsActivity">
+            android:name="com.kaancelen.vehiclecam.app.OptionsActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape" 
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:icon="@drawable/ic_launcher"
+            android:label="@string/app_name"
+            android:name="SampleOverlayShowActivity"
+            android:theme="@android:style/Theme.Dialog" >
             <intent-filter >
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
         <activity

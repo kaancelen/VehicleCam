@@ -2,18 +2,6 @@ package samples.jawsware.interactiveoverlay;
 
 /*
 Copyright 2011 jawsware international
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
 */
 
 import java.util.Timer;
@@ -31,6 +19,7 @@ import com.kaancelen.vehiclecam.camera.VideoRecorder;
 import com.kaancelen.vehiclecam.constants.Constants;
 import com.kaancelen.vehiclecam.errors.LogErrors;
 import com.kaancelen.vehiclecam.errors.ToastMessages;
+import com.kaancelen.vehiclecam.gps.GPSModule;
 import com.kaancelen.vehiclecam.helpers.CameraHelper;
 import com.kaancelen.vehiclecam.helpers.SharedPreferencer;
 
@@ -42,6 +31,7 @@ public class SampleOverlayView extends OverlayView {
 	private VideoRecorder videoRecorder;
 	private Timer timer;
 	private RecordingTask recordingTask;
+	private GPSModule gpsModule;
 	private boolean ftpOption;
 	private int camOption;
 	private int durationOption;
@@ -96,6 +86,9 @@ public class SampleOverlayView extends OverlayView {
 			videoRecorder.releaseMediaRecorder();
 			videoRecorder = null;
 		}
+//		if(gpsModule!=null){
+//			gpsModule = null;
+//		}
 		if(camera != null){//release camera
 			camera.release();
 			camera = null;
@@ -141,6 +134,7 @@ public class SampleOverlayView extends OverlayView {
 		
 		@Override
 		protected Void doInBackground(Integer... params) {
+			Log.d(TAG, "protected Void doInBackground(Integer... params)");
 			try {
 				if(params[0] == Constants.START_RECORDING){
 					videoRecorder.startRecording();
