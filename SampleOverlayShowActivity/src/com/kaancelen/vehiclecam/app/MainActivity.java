@@ -10,6 +10,7 @@ import com.kaancelen.vehiclecam.camera.VideoRecorder;
 import com.kaancelen.vehiclecam.constants.Constants;
 import com.kaancelen.vehiclecam.errors.LogErrors;
 import com.kaancelen.vehiclecam.errors.ToastMessages;
+import com.kaancelen.vehiclecam.ftpupload.FTPAccount;
 import com.kaancelen.vehiclecam.gps.GPSModule;
 import com.kaancelen.vehiclecam.helpers.CameraHelper;
 import com.kaancelen.vehiclecam.helpers.SharedPreferencer;
@@ -33,10 +34,11 @@ public class MainActivity extends Activity {
 	private VideoRecorder videoRecorder;
 	private Timer timer;
 	private RecordingTask recordingTask;
-	private GPSModule gpsModule;
 	private boolean ftpOption;
 	private int camOption;
 	private int durationOption;
+	private GPSModule gpsModule;
+	private FTPAccount ftpAccount;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +56,7 @@ public class MainActivity extends Activity {
 		ftpOption = SharedPreferencer.getFTPUploadOption(getApplicationContext());
 		camOption = SharedPreferencer.getCameraID(getApplicationContext());
 		durationOption = SharedPreferencer.getRecordDuration(getApplicationContext());
+		ftpAccount = SharedPreferencer.getFTPAccount(getApplicationContext());
 		//get back camera object from hardware
 		camera = CameraHelper.getCameraInstance(camOption);
 		if(camera == null){
@@ -86,7 +89,7 @@ public class MainActivity extends Activity {
 			timer = null;
 		}
 		if(videoRecorder!=null){
-			videoRecorder.releaseMediaRecorder();
+			videoRecorder.releaseMediaRecorder(/*ftpOption, ftpAccount, gpsModule.toString()*/);
 			videoRecorder = null;
 		}
 //		if(gpsModule!=null){
@@ -128,7 +131,7 @@ public class MainActivity extends Activity {
 			return true;
 		}else{
 			//somethings go bad we can't record
-			videoRecorder.releaseMediaRecorder();
+			videoRecorder.releaseMediaRecorder(/*false, null, ""*/);
 			return false;
 		}
 	}
@@ -140,7 +143,7 @@ public class MainActivity extends Activity {
 	private boolean stopRecording(){
 		//Camera in record and we want to stop recording
 		new VideoRecording().execute(Constants.STOP_RECORDING);
-		videoRecorder.releaseMediaRecorder();
+		videoRecorder.releaseMediaRecorder(/*ftpOption, ftpAccount, gpsModule.toString()*/);
 		return true;
 	}
 	

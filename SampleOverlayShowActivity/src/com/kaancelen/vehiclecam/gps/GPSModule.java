@@ -24,6 +24,11 @@ public class GPSModule implements LocationListener{
 	public double getLongitude() {
 		return longitude;
 	}
+	
+	@Override
+	public String toString() {
+		return "GPS_"+latitude+"_"+longitude;
+	}
 
 	@Override
 	public void onLocationChanged(Location location) {

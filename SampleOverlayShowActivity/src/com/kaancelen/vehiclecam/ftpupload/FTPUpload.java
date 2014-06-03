@@ -19,8 +19,8 @@ public class FTPUpload extends AsyncTask<String, Void, Void>{
 	 * params[0] => file path wants to be uploaded
 	 * params[1] => file path wants to be saved 
 	 */
-	public FTPUpload() {
-		ftpAccount = new FTPAccount(FTPConstants.DEFAULT_FTP_URL, FTPConstants.DEFAULT_FTP_USERNAME, FTPConstants.DEFAULT_FTP_PASSWORD);
+	public FTPUpload(FTPAccount ftpAccount) {
+		this.ftpAccount = ftpAccount;
 	}
 	
 	@Override

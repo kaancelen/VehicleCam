@@ -3,6 +3,7 @@ package com.kaancelen.vehiclecam.camera;
 import java.io.IOException;
 import com.kaancelen.vehiclecam.constants.Constants;
 import com.kaancelen.vehiclecam.errors.LogErrors;
+import com.kaancelen.vehiclecam.ftpupload.FTPUpload;
 import com.kaancelen.vehiclecam.helpers.SaveFileHelper;
 import android.hardware.Camera;
 import android.media.CamcorderProfile;
@@ -61,7 +62,7 @@ public class VideoRecorder {
 	    return true;
 	}
 	
-	public void releaseMediaRecorder(/*boolean isUpload, String gpsString*/){
+	public void releaseMediaRecorder(/*boolean ftpOption, FTPAccount ftpAccount,String gpsString*/){
 		if(mediaRecorder!=null){
 			mediaRecorder.reset();
 			mediaRecorder.release();
@@ -69,10 +70,10 @@ public class VideoRecorder {
 			camera.lock();
 		}
 		//burada FTP Upload yapýlmasý lazým
-//		if(isUpload){
-//			new FTPUpload().execute(filepath, PATH + 
-//										"GPS_" + gpsString +
-//										"TIME_" + new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date()) +
+//		if(ftpOption){
+//			FTPUpload ftpUpload = new FTPUpload(ftpAccount);
+//			ftpUpload.execute(filepath, PATH + gpsString +
+//										"_TIME_" + new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date()) +
 //										".mp4");
 //		}
 	}

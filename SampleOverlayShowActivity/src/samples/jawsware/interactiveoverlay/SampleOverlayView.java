@@ -24,6 +24,7 @@ import com.kaancelen.vehiclecam.camera.VideoRecorder;
 import com.kaancelen.vehiclecam.constants.Constants;
 import com.kaancelen.vehiclecam.errors.LogErrors;
 import com.kaancelen.vehiclecam.errors.ToastMessages;
+import com.kaancelen.vehiclecam.ftpupload.FTPAccount;
 import com.kaancelen.vehiclecam.gps.GPSModule;
 import com.kaancelen.vehiclecam.helpers.CameraHelper;
 import com.kaancelen.vehiclecam.helpers.SharedPreferencer;
@@ -37,10 +38,11 @@ public class SampleOverlayView extends OverlayView {
 	private VideoRecorder videoRecorder;
 	private Timer timer;
 	private RecordingTask recordingTask;
-	private GPSModule gpsModule;
 	private boolean ftpOption;
 	private int camOption;
 	private int durationOption;
+	private GPSModule gpsModule;
+	private FTPAccount ftpAccount;
 	
 	public SampleOverlayView(OverlayService service) {
 		super(service, R.layout.overlay, 1);
@@ -62,6 +64,7 @@ public class SampleOverlayView extends OverlayView {
 		ftpOption = SharedPreferencer.getFTPUploadOption(getContext());
 		camOption = SharedPreferencer.getCameraID(getContext());
 		durationOption = SharedPreferencer.getRecordDuration(getContext());
+		ftpAccount = SharedPreferencer.getFTPAccount(getContext());
 		//kamerayý al ve kontrol et
 		camera = CameraHelper.getCameraInstance(camOption);
 		if(camera == null){
@@ -90,7 +93,7 @@ public class SampleOverlayView extends OverlayView {
 			timer = null;
 		}
 		if(videoRecorder != null){ //release video recorder
-			videoRecorder.releaseMediaRecorder();
+			videoRecorder.releaseMediaRecorder(/*ftpOption, ftpAccount, gpsModule.toString()*/);
 			videoRecorder = null;
 		}
 //		if(gpsModule!=null){
@@ -124,7 +127,7 @@ public class SampleOverlayView extends OverlayView {
 			return true;
 		}else{
 			//birþeyler ters gitti baþlayamýyor.
-			videoRecorder.releaseMediaRecorder();
+			videoRecorder.releaseMediaRecorder(/*false, null, ""*/);
 			return false;
 		}
 	}
@@ -136,7 +139,7 @@ public class SampleOverlayView extends OverlayView {
 	private boolean stopRecording(){
 		//kamera kaydý bitti
 		new VideoRecording().execute(Constants.STOP_RECORDING);
-		videoRecorder.releaseMediaRecorder();
+		videoRecorder.releaseMediaRecorder(/*ftpOption, ftpAccount, gpsModule.toString()*/);
 		return true;
 	}
 	
