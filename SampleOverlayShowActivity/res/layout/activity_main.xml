@@ -28,15 +28,6 @@
         android:onClick="onClickMinimize"
         android:src="@drawable/minimize" />
 
-    <ImageView
-        android:id="@+id/cameraOptionImg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/imageButton1"
-        android:layout_marginTop="22dp"
-        android:layout_toRightOf="@+id/back_camera_preview"
-        android:src="@drawable/back_camera_icon" />
-
     <ImageButton
         android:id="@+id/imageButton1"
         android:layout_width="wrap_content"
@@ -52,18 +43,24 @@
         android:id="@+id/durationOptionImg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/cameraOptionImg"
-        android:layout_marginTop="19dp"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/back_camera_preview"
         android:src="@drawable/second_30_icon" />
+
+    <ImageView
+        android:id="@+id/cameraOptionImg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/durationOptionImg"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/back_camera_icon" />
 
     <ImageView
         android:id="@+id/cloudOptionImg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/imageView1"
         android:layout_alignParentRight="true"
-        android:layout_marginBottom="11dp"
+        android:layout_below="@+id/durationOptionImg"
         android:src="@drawable/cloud_open_icon" />
 
 </RelativeLayout>

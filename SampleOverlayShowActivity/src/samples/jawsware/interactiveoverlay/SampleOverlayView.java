@@ -73,6 +73,7 @@ public class SampleOverlayView extends OverlayView {
 			detachAllViewsFromParent();//view'u kapat
 		}
 		//camera preview'unu ayarla
+//		camera.setDisplayOrientation(90);
 		cameraPreview = new CameraPreview(getContext(), camera);
 		FrameLayout frameLayout = (FrameLayout)findViewById(R.id.camera_preview);
 		frameLayout.addView(cameraPreview);

@@ -31,16 +31,6 @@
         android:layout_alignParentRight="true"
         android:src="@drawable/ic_launcher" />
 
-    <Switch
-        android:id="@+id/ftpOption"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignTop="@+id/imageButton1"
-        android:layout_marginLeft="10dp"
-        android:text="Buluta Yükleme"
-        android:textStyle="bold" />
-
     <TextView
         android:id="@+id/ftpUrlLabel"
         android:layout_width="wrap_content"
@@ -112,34 +102,31 @@
         android:layout_alignRight="@+id/ftpOption"
         android:ems="10" />
 
-    <RadioGroup
-        android:id="@+id/camOption"
+    <TextView
+        android:id="@+id/ftpPasswordLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/imageButton1"
-        android:layout_marginRight="68dp"
-        android:layout_toLeftOf="@+id/imageButton1" >
+        android:layout_alignBaseline="@+id/textView2"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_alignParentLeft="true"
+        android:text="Şifre" />
 
-        <RadioButton
-            android:id="@+id/backCam"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/BackCam" />
-
-        <RadioButton
-            android:id="@+id/frontCam"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/FrontCam" />
-    </RadioGroup>
+    <Switch
+        android:id="@+id/ftpOption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/ftpUrl"
+        android:layout_toRightOf="@+id/ftpDefault"
+        android:text="Buluta Yükleme"
+        android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/imageButton1"
-        android:layout_alignLeft="@+id/camOption"
-        android:text="@string/camToUsed"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_below="@+id/ftpUsername"
+        android:text="@string/durationToUsed"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textStyle="bold" />
 
@@ -147,8 +134,8 @@
         android:id="@+id/durationOption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/camOption"
-        android:layout_below="@+id/ftpPassword" >
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_below="@+id/textView2" >
 
         <RadioButton
             android:id="@+id/second30"
@@ -176,22 +163,34 @@
     </RadioGroup>
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/durationOption"
-        android:layout_below="@+id/ftpUsername"
-        android:text="@string/durationToUsed"
+        android:layout_alignBottom="@+id/imageView1"
+        android:layout_alignLeft="@+id/camOption"
+        android:text="@string/camToUsed"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/ftpPasswordLabel"
+    <RadioGroup
+        android:id="@+id/camOption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView2"
-        android:layout_alignBottom="@+id/textView2"
-        android:layout_alignParentLeft="true"
-        android:text="Şifre" />
+        android:layout_alignTop="@+id/ftpOption"
+        android:layout_marginLeft="232dp"
+        android:layout_toRightOf="@+id/ftpUrl" >
+
+        <RadioButton
+            android:id="@+id/backCam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/BackCam" />
+
+        <RadioButton
+            android:id="@+id/frontCam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/FrontCam" />
+    </RadioGroup>
 
 </RelativeLayout>
