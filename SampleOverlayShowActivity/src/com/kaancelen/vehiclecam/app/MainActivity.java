@@ -4,7 +4,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 import samples.jawsware.interactiveoverlay.R;
 import samples.jawsware.interactiveoverlay.SampleOverlayShowActivity;
-
 import com.kaancelen.vehiclecam.camera.CameraPreview;
 import com.kaancelen.vehiclecam.camera.VideoRecorder;
 import com.kaancelen.vehiclecam.constants.Constants;
@@ -23,7 +22,7 @@ import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.TextView;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
@@ -74,10 +73,36 @@ public class MainActivity extends Activity {
 		timer = new Timer();
 		recordingTask = new RecordingTask();
 		timer.schedule(recordingTask, Constants.PREPARE_DURATION, durationOption);
-		//settext for information
-		((TextView)findViewById(R.id.cameraIdText)).setText(camOption==0?"Arka Kamera":"Ön Kamera");
-		((TextView)findViewById(R.id.recordDurationText)).setText("Periyot ("+(durationOption/1000)+")sn");
-		((TextView)findViewById(R.id.ftpOptionText)).setText("Bulut "+(ftpOption?"Açýk":"Kapalý"));
+		//set icons for information
+		ImageView cameraOptionImg = (ImageView)findViewById(R.id.cameraOptionImg);
+		ImageView durationOptionImg = (ImageView)findViewById(R.id.durationOptionImg);
+		ImageView cloudOptionImg = (ImageView)findViewById(R.id.cloudOptionImg);
+		//cam view deðiþ
+		if(camOption == Constants.BACK_CAMERA)
+			cameraOptionImg.setImageResource(R.drawable.back_camera_icon);
+		else if(camOption == Constants.FRONT_CAMERA)
+			cameraOptionImg.setImageResource(R.drawable.front_camera_icon);
+		//duration view deðiþ
+		switch (durationOption) {
+			case Constants.SECOND_30:
+				durationOptionImg.setImageResource(R.drawable.second_30_icon);
+				break;
+			case Constants.MINUTE_2:
+				durationOptionImg.setImageResource(R.drawable.minute_2_icon);
+				break;
+			case Constants.MINUTE_5:
+				durationOptionImg.setImageResource(R.drawable.minute_5_icon);
+				break;
+			case Constants.MINUTE_10:
+				durationOptionImg.setImageResource(R.drawable.minute_10_icon);
+				break;
+		}
+		//cloud view deðiþ
+		if(ftpOption)
+			cloudOptionImg.setImageResource(R.drawable.cloud_open_icon);
+		else
+			cloudOptionImg.setImageResource(R.drawable.cloud_close_icon);
+		
 	}
 		
 	@Override

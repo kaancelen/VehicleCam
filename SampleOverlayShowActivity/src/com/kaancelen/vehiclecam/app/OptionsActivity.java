@@ -48,9 +48,9 @@ public class OptionsActivity extends Activity{
 		ftpOption = (Switch)findViewById(R.id.ftpOption);
 		camOption = (RadioGroup)findViewById(R.id.camOption);
 		durationOption = (RadioGroup)findViewById(R.id.durationOption);
-		ftpUrlLabel = (TextView)findViewById(R.id.textView4);
-		ftpUsernameLabel = (TextView)findViewById(R.id.textView5);
-		ftpPasswordLabel = (TextView)findViewById(R.id.textView6);
+		ftpUrlLabel = (TextView)findViewById(R.id.ftpUrlLabel);
+		ftpUsernameLabel = (TextView)findViewById(R.id.ftpUsernameLabel);
+		ftpPasswordLabel = (TextView)findViewById(R.id.ftpPasswordLabel);
 		ftpUrl = (EditText)findViewById(R.id.ftpUrl);
 		ftpUsername = (EditText)findViewById(R.id.ftpUsername);
 		ftpPassword = (EditText)findViewById(R.id.ftpPassword);
