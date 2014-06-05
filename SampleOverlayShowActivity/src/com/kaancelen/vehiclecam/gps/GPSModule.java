@@ -14,7 +14,7 @@ public class GPSModule implements LocationListener{
 	
 	public GPSModule(Context context){
 		LocationManager locationManager = (LocationManager)context.getSystemService(Context.LOCATION_SERVICE);
-		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000*20/*20sn*/, 100/*100m*/, this);
+		locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000*20/*20sn*/, 100/*100m*/, this);
 	}
 	
 	public double getLatitude() {
