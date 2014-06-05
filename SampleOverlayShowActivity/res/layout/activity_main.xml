@@ -9,20 +9,20 @@
         android:id="@+id/back_camera_preview"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_toLeftOf="@+id/imageView1" />
+        android:layout_toLeftOf="@+id/imageView3" />
 
     <ImageView
         android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:src="@drawable/ic_launcher" />
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:onClick="onClickMinimize"
@@ -30,37 +30,37 @@
 
     <ImageButton
         android:id="@+id/imageButton1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_alignLeft="@+id/cameraOptionImg"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/imageView3"
         android:layout_marginTop="15dp"
-        android:layout_toRightOf="@+id/back_camera_preview"
         android:onClick="onClickOptions"
         android:src="@android:drawable/ic_menu_preferences" />
 
     <ImageView
-        android:id="@+id/durationOptionImg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/back_camera_preview"
-        android:src="@drawable/second_30_icon" />
-
-    <ImageView
         android:id="@+id/cameraOptionImg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
         android:layout_above="@+id/durationOptionImg"
         android:layout_alignParentRight="true"
         android:src="@drawable/back_camera_icon" />
 
     <ImageView
         android:id="@+id/cloudOptionImg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_above="@+id/imageView1"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/durationOptionImg"
         android:src="@drawable/cloud_open_icon" />
+
+    <ImageView
+        android:id="@+id/durationOptionImg"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_above="@+id/cloudOptionImg"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/second_30_icon" />
 
 </RelativeLayout>
