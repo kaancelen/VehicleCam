@@ -4,6 +4,7 @@ import com.kaancelen.vehiclecam.constants.Constants;
 import com.kaancelen.vehiclecam.errors.ToastMessages;
 import com.kaancelen.vehiclecam.ftpupload.FTPAccount;
 import com.kaancelen.vehiclecam.ftpupload.FTPConstants;
+import com.kaancelen.vehiclecam.helpers.InternetHelper;
 import com.kaancelen.vehiclecam.helpers.SharedPreferencer;
 import samples.jawsware.interactiveoverlay.R;
 import samples.jawsware.interactiveoverlay.SampleOverlayShowActivity;
@@ -60,6 +61,12 @@ public class OptionsActivity extends Activity{
 		ftp = SharedPreferencer.getFTPUploadOption(getApplicationContext());
 		cam = SharedPreferencer.getCameraID(getApplicationContext());
 		duration = SharedPreferencer.getRecordDuration(getApplicationContext());
+		//internet baðlantým var mý?
+		if(ftp && !InternetHelper.hasInternetConnection(getApplicationContext())){
+			ftp = false;
+			SharedPreferencer.setFTPUploadOption(ftp, getApplicationContext());
+			Toast.makeText(getApplicationContext(), ToastMessages.NO_INTERNET_CONN, Toast.LENGTH_LONG).show();
+		}
 		//ayarlarý viewlara ata
 		ftpOption.setChecked(ftp);
 		setFTPOptionViews(ftp);//viewlarý deðiþ
@@ -93,6 +100,12 @@ public class OptionsActivity extends Activity{
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				ftp = isChecked;
+				//internet baðlantým var mý?
+				if(ftp && !InternetHelper.hasInternetConnection(getApplicationContext())){
+					ftp = false;
+					ftpOption.setChecked(false);
+					Toast.makeText(getApplicationContext(), ToastMessages.NO_INTERNET_CONN, Toast.LENGTH_LONG).show();
+				}
 				setFTPOptionViews(ftp);//Viewlarý deðiþ
 				SharedPreferencer.setFTPUploadOption(ftp, getApplicationContext());
 			}

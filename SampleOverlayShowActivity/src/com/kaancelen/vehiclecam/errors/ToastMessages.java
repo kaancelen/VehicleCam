@@ -10,4 +10,5 @@ public class ToastMessages {
 	public static final String RECORD_START = "Kayýt baþladý";
 	public static final String FTP_SETTINGS_RESETTED = "Bulut ayarlarý sýfýrlandý";
 	public static final String FTP_SETTINGS_SAVED = "Bulut ayarlarý kaydedildi";
+	public static final String NO_INTERNET_CONN = "Internet baðlantýsýna sahip deðilsiniz, Buluta yükleme kapatýlýyor.";
 }

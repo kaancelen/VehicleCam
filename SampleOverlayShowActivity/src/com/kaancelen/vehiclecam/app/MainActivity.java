@@ -12,6 +12,7 @@ import com.kaancelen.vehiclecam.errors.ToastMessages;
 import com.kaancelen.vehiclecam.ftpupload.FTPAccount;
 import com.kaancelen.vehiclecam.gps.GPSModule;
 import com.kaancelen.vehiclecam.helpers.CameraHelper;
+import com.kaancelen.vehiclecam.helpers.InternetHelper;
 import com.kaancelen.vehiclecam.helpers.SharedPreferencer;
 import android.app.Activity;
 import android.content.Intent;
@@ -56,6 +57,12 @@ public class MainActivity extends Activity {
 		camOption = SharedPreferencer.getCameraID(getApplicationContext());
 		durationOption = SharedPreferencer.getRecordDuration(getApplicationContext());
 		ftpAccount = SharedPreferencer.getFTPAccount(getApplicationContext());
+		//internet baðlantým var mý?
+		if(ftpOption && !InternetHelper.hasInternetConnection(getApplicationContext())){
+			ftpOption = false;
+			SharedPreferencer.setFTPUploadOption(ftpOption, getApplicationContext());
+			Toast.makeText(getApplicationContext(), ToastMessages.NO_INTERNET_CONN, Toast.LENGTH_LONG).show();
+		}
 		//get back camera object from hardware
 		camera = CameraHelper.getCameraInstance(camOption);
 		if(camera == null){

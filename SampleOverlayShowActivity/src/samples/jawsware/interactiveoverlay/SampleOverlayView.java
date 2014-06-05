@@ -24,6 +24,7 @@ import com.kaancelen.vehiclecam.errors.ToastMessages;
 import com.kaancelen.vehiclecam.ftpupload.FTPAccount;
 import com.kaancelen.vehiclecam.gps.GPSModule;
 import com.kaancelen.vehiclecam.helpers.CameraHelper;
+import com.kaancelen.vehiclecam.helpers.InternetHelper;
 import com.kaancelen.vehiclecam.helpers.SharedPreferencer;
 
 public class SampleOverlayView extends OverlayView {
@@ -62,6 +63,12 @@ public class SampleOverlayView extends OverlayView {
 		camOption = SharedPreferencer.getCameraID(getContext());
 		durationOption = SharedPreferencer.getRecordDuration(getContext());
 		ftpAccount = SharedPreferencer.getFTPAccount(getContext());
+		//internet baðlantým var mý?
+		if(ftpOption && !InternetHelper.hasInternetConnection(getContext())){
+			ftpOption = false;
+			SharedPreferencer.setFTPUploadOption(ftpOption, getContext());
+			Toast.makeText(getContext(), ToastMessages.NO_INTERNET_CONN, Toast.LENGTH_LONG).show();
+		}
 		//kamerayý al ve kontrol et
 		camera = CameraHelper.getCameraInstance(camOption);
 		if(camera == null){
