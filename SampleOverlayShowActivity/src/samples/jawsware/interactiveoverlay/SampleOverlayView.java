@@ -6,18 +6,15 @@ Copyright 2011 jawsware international
 
 import java.util.Timer;
 import java.util.TimerTask;
-
 import android.content.Intent;
 import android.hardware.Camera;
 import android.os.AsyncTask;
 import android.os.SystemClock;
 import android.util.Log;
-import android.view.Surface;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 import com.jawsware.core.share.OverlayService;
 import com.jawsware.core.share.OverlayView;
-import com.kaancelen.vehiclecam.app.MainActivity;
 import com.kaancelen.vehiclecam.app.MinimizeToMainActivity;
 import com.kaancelen.vehiclecam.camera.CameraPreview;
 import com.kaancelen.vehiclecam.camera.VideoRecorder;
@@ -73,10 +70,11 @@ public class SampleOverlayView extends OverlayView {
 			detachAllViewsFromParent();//view'u kapat
 		}
 		//camera preview'unu ayarla
-//		camera.setDisplayOrientation(90);
 		cameraPreview = new CameraPreview(getContext(), camera);
 		FrameLayout frameLayout = (FrameLayout)findViewById(R.id.camera_preview);
 		frameLayout.addView(cameraPreview);
+		//new gpsModule
+		gpsModule = new GPSModule(getContext());
 		//video kaydetmek için kayýt objesini oluþtur
 		videoRecorder = new VideoRecorder(camera);
 		//Timer ayarla
@@ -94,12 +92,12 @@ public class SampleOverlayView extends OverlayView {
 			timer = null;
 		}
 		if(videoRecorder != null){ //release video recorder
-			videoRecorder.releaseMediaRecorder(/*ftpOption, ftpAccount, gpsModule.toString()*/);
+			videoRecorder.releaseMediaRecorder(ftpOption, ftpAccount, gpsModule.toString());
 			videoRecorder = null;
 		}
-//		if(gpsModule!=null){
-//			gpsModule = null;
-//		}
+		if(gpsModule!=null){
+			gpsModule = null;
+		}
 		if(camera != null){//release camera
 			camera.release();
 			camera = null;
@@ -128,7 +126,7 @@ public class SampleOverlayView extends OverlayView {
 			return true;
 		}else{
 			//birþeyler ters gitti baþlayamýyor.
-			videoRecorder.releaseMediaRecorder(/*false, null, ""*/);
+			videoRecorder.releaseMediaRecorder(false, null, "");
 			return false;
 		}
 	}
@@ -140,7 +138,7 @@ public class SampleOverlayView extends OverlayView {
 	private boolean stopRecording(){
 		//kamera kaydý bitti
 		new VideoRecording().execute(Constants.STOP_RECORDING);
-		videoRecorder.releaseMediaRecorder(/*ftpOption, ftpAccount, gpsModule.toString()*/);
+		videoRecorder.releaseMediaRecorder(ftpOption, ftpAccount, gpsModule.toString());
 		return true;
 	}
 	

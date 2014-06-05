@@ -32,7 +32,7 @@ public class FTPUpload extends AsyncTask<String, Void, Void>{
 				throw new IOException("params.length should be 5");
 			
 			ftpclient = new FTPClient();
-			ftpclient.connect(InetAddress.getByName(ftpAccount.getUrl()));//connect
+			ftpclient.connect(ftpAccount.getUrl() ,21);//connect
 			if(!ftpclient.login(ftpAccount.getUsername(), ftpAccount.getPassword()))//login
 				throw new IOException("Cannot Login");
 			
@@ -48,7 +48,7 @@ public class FTPUpload extends AsyncTask<String, Void, Void>{
 		} catch (SocketException e) {
 			Log.e("USER:SocketException", e.getMessage());
 		} catch (UnknownHostException e) {
-			Log.e("USER:UnknownHostException", e.getMessage());
+			Log.e("USER:UnknownHostException", ftpAccount.getUrl() + " " + ftpAccount.getUsername() + " " + ftpAccount.getPassword());
 		} catch (IOException e) {
 			Log.e("USER:IOException", e.getMessage());
 		} finally{

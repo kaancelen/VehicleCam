@@ -67,6 +67,8 @@ public class MainActivity extends Activity {
 		cameraPreview = new CameraPreview(this, camera);
 		FrameLayout frameLayout = (FrameLayout)findViewById(R.id.back_camera_preview);
 		frameLayout.addView(cameraPreview);
+		//new gpsModule
+		gpsModule = new GPSModule(getApplicationContext());
 		//create video recorder object with camera
 		videoRecorder = new VideoRecorder(camera);
 		//create timers
@@ -114,12 +116,12 @@ public class MainActivity extends Activity {
 			timer = null;
 		}
 		if(videoRecorder!=null){
-			videoRecorder.releaseMediaRecorder(/*ftpOption, ftpAccount, gpsModule.toString()*/);
+			videoRecorder.releaseMediaRecorder(ftpOption, ftpAccount, gpsModule.toString());
 			videoRecorder = null;
 		}
-//		if(gpsModule!=null){
-//			gpsModule = null;
-//		}
+		if(gpsModule!=null){
+			gpsModule = null;
+		}
 		if(camera != null){
 			camera.release();
 			camera = null;
@@ -156,7 +158,7 @@ public class MainActivity extends Activity {
 			return true;
 		}else{
 			//somethings go bad we can't record
-			videoRecorder.releaseMediaRecorder(/*false, null, ""*/);
+			videoRecorder.releaseMediaRecorder(false, null, "");
 			return false;
 		}
 	}
@@ -168,7 +170,7 @@ public class MainActivity extends Activity {
 	private boolean stopRecording(){
 		//Camera in record and we want to stop recording
 		new VideoRecording().execute(Constants.STOP_RECORDING);
-		videoRecorder.releaseMediaRecorder(/*ftpOption, ftpAccount, gpsModule.toString()*/);
+		videoRecorder.releaseMediaRecorder(ftpOption, ftpAccount, gpsModule.toString());
 		return true;
 	}
 	

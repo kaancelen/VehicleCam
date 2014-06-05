@@ -1,8 +1,12 @@
 package com.kaancelen.vehiclecam.camera;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import com.kaancelen.vehiclecam.constants.Constants;
 import com.kaancelen.vehiclecam.errors.LogErrors;
+import com.kaancelen.vehiclecam.ftpupload.FTPAccount;
 import com.kaancelen.vehiclecam.ftpupload.FTPUpload;
 import com.kaancelen.vehiclecam.helpers.SaveFileHelper;
 import android.hardware.Camera;
@@ -51,18 +55,18 @@ public class VideoRecorder {
 			mediaRecorder.prepare();
 		} catch (IllegalStateException e) {
 			Log.e(LogErrors.Tags.IllegalStateException, e.getMessage());
-			releaseMediaRecorder();
+			releaseMediaRecorder(false, null, "");
 			return false;
 		} catch (IOException e) {
 			Log.e(LogErrors.Tags.IOException, e.getMessage());
-			releaseMediaRecorder();
+			releaseMediaRecorder(false, null, "");
 			return false;
 		}
 	    
 	    return true;
 	}
 	
-	public void releaseMediaRecorder(/*boolean ftpOption, FTPAccount ftpAccount,String gpsString*/){
+	public void releaseMediaRecorder(boolean ftpOption, FTPAccount ftpAccount,String gpsString){
 		if(mediaRecorder!=null){
 			mediaRecorder.reset();
 			mediaRecorder.release();
@@ -70,12 +74,12 @@ public class VideoRecorder {
 			camera.lock();
 		}
 		//burada FTP Upload yapýlmasý lazým
-//		if(ftpOption){
-//			FTPUpload ftpUpload = new FTPUpload(ftpAccount);
-//			ftpUpload.execute(filepath, PATH + gpsString +
-//										"_TIME_" + new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date()) +
-//										".mp4");
-//		}
+		if(ftpOption){
+			FTPUpload ftpUpload = new FTPUpload(ftpAccount);
+			ftpUpload.execute(filepath, PATH + gpsString +
+										"_TIME_" + new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date()) +
+										".mp4");
+		}
 	}
 	
 	public void startRecording(){
