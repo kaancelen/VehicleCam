@@ -63,12 +63,7 @@ public class SampleOverlayView extends OverlayView {
 		camOption = SharedPreferencer.getCameraID(getContext());
 		durationOption = SharedPreferencer.getRecordDuration(getContext());
 		ftpAccount = SharedPreferencer.getFTPAccount(getContext());
-		//internet baðlantým var mý?
-		if(ftpOption && !InternetHelper.hasInternetConnection(getContext())){
-			ftpOption = false;
-			SharedPreferencer.setFTPUploadOption(ftpOption, getContext());
-			Toast.makeText(getContext(), ToastMessages.NO_INTERNET_CONN, Toast.LENGTH_LONG).show();
-		}
+		
 		//kamerayý al ve kontrol et
 		camera = CameraHelper.getCameraInstance(camOption);
 		if(camera == null){
@@ -94,6 +89,7 @@ public class SampleOverlayView extends OverlayView {
 	protected void onDetachedFromWindow() {
 		super.onDetachedFromWindow();
 		Log.d(TAG, "protected void onDetachedFromWindow()");
+		checkAndSetFtpUpload();//kapatýrken son video'yu yükleyemeyebilir kontrol et.
 		if(timer!=null){ //release Timer
 			timer.cancel();
 			timer = null;
@@ -126,6 +122,7 @@ public class SampleOverlayView extends OverlayView {
 	 * @return
 	 */
 	private boolean startRecording(){
+		checkAndSetFtpUpload();//internet baðlantým yoksa buluta yüklemeyi kapat
 		//Kamera kayýtta deðil hazýrlayalým
 		if(videoRecorder.prepareRecording()){
 			//kamerayý baþarýlý þekilde hazýrladýk.
@@ -143,10 +140,27 @@ public class SampleOverlayView extends OverlayView {
 	 * @return
 	 */
 	private boolean stopRecording(){
+		checkAndSetFtpUpload();//internet baðlantým yoksa buluta yüklemeyi kapat
 		//kamera kaydý bitti
 		new VideoRecording().execute(Constants.STOP_RECORDING);
 		videoRecorder.releaseMediaRecorder(ftpOption, ftpAccount, gpsModule.toString());
 		return true;
+	}
+	
+	/***
+	 * Ýnternet baðlantýsýný kontrol eder, eðer internet yoksa
+	 * Buluta yükleme özelliðini kapatýr.
+	 * MainActivity'de bu kontrolü sadece onCreate'de yaparken
+	 * minimize modda yani burada video kaydý baþlamadan önce ve bittikten sonra 
+	 * kontrol etmemiz lazým.Çünkü kullanýcý video kaydý sýrasýnda internet
+	 * baðlantýsýný kapatabilir/kaybedebilir.
+	 */
+	private void checkAndSetFtpUpload(){
+		//internet baðlantým var mý?
+		if(ftpOption && !InternetHelper.hasInternetConnection(getContext())){
+			ftpOption = false;
+			SharedPreferencer.setFTPUploadOption(ftpOption, getContext());
+		}
 	}
 	
 	/**

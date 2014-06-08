@@ -44,8 +44,19 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Log.d(TAG, "onCreate");
+	}
+	
+	@Override
+	protected void onStart() {
+		super.onStart();
+		Log.d(TAG, "onStart");
+	}
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		Log.d(TAG, "onResume");
 		setContentView(R.layout.activity_main);	
-		
 		//check if there is a camera
 		if(!CameraHelper.checkCameraHardware(getApplicationContext())){
 			Log.e(LogErrors.Tags.NO_CAMERA,LogErrors.Messages.NO_CAMERA);
@@ -111,7 +122,6 @@ public class MainActivity extends Activity {
 			cloudOptionImg.setImageResource(R.drawable.cloud_open_icon);
 		else
 			cloudOptionImg.setImageResource(R.drawable.cloud_close_icon);
-		
 	}
 		
 	@Override
@@ -133,6 +143,18 @@ public class MainActivity extends Activity {
 			camera.release();
 			camera = null;
 		}
+	}
+	
+	@Override
+	protected void onStop() {
+		super.onStop();
+		Log.d(TAG, "onStop");
+	}
+	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		Log.d(TAG, "onDestroy");
 	}
 	/**
 	 * Main ekranýnda ayarlar butonuna basýlýnca çaðýrýlýr ve OptionsActivity'yi çalýþtýrýr
